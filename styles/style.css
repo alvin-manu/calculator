@@ -30,3 +30,12 @@ body{
     align-items: end;
     min-height: 20vh;
 }
+.displayField input{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 36px;
+    font-weight: 600;
+    outline: none;
+    text-align: right;
+}
