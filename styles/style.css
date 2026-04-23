@@ -1,12 +1,14 @@
 :root {
   --bg-color: #daf0ff;
-  --primary-color: rgba(255, 255, 255, 0.32);
+  --primary-color: rgba(255, 255, 255, 0.842);
   --text-primary-color:rgb(0, 0, 0);
   --text-color: rgb(16, 16, 16);
   --button-color: #d2ebfc;
+  --button-hover-color: #bee5ff;
   --math-bg-keys: #b3dbff;
   --math-color-keys: #60abe0;
-  --math-hover-keys: #18acff;
+  --math-bg-hover-keys: #18acff;
+  --math-color-hover-keys: #ffffff;
   --border-color:white;
 }
 
@@ -16,9 +18,11 @@ body.darkMode {
   --text-primary-color:white;
   --text-color: #2ba8fb;
   --button-color: #2f3135;
+  --button-hover-color: #3f4041;
   --math-bg-keys: #005db1;
   --math-color-keys: #379dfc;
-  --math-hover-keys: #1892ff;
+  --math-bg-hover-keys: #1892ff;
+  --math-color-hover-keys: #ffffff;
   --border-color:#2f3135;
 }
 
@@ -39,16 +43,8 @@ body {
   padding: 10px 20px;
   border-radius: 15px;
   max-width: 300px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-  /* backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 50px 25px rgba(255, 255, 255, 2.5); */
 }
 
 .displayField {
@@ -103,4 +99,13 @@ body {
   background-color: var(--button-color);
   color: var(--text-primary-color);
   border-radius: 10px;
+}
+
+.calculateButtons button:hover{
+  background-color: var(--button-hover-color);
+}
+
+.calculateButtons .sign:hover {
+  background-color: var(--math-bg-hover-keys);
+  color: var(--math-color-hover-keys);
 }
