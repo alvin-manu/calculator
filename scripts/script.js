@@ -49,3 +49,25 @@ const calculate = () => {
     }
 };
 
+inputContainer.addEventListener("input", (e) => {
+
+    let val = inputContainer.value.replace(/[^0-9+\-*/.]/g, "");
+
+    val = val.replace(/[\+\-\*\/]{2,}/g, (match) => match[match.length - 1]);
+
+    if (/^[\+\*\/]/.test(val)) {
+        val = "";
+    }
+
+    if (e.data === '.') {
+
+        const parts = val.split(/[\+\-\*\/]/);
+        const currentNumber = parts[parts.length - 1];
+
+        if (currentNumber.split('.').length > 2) {
+            val = val.slice(0, -1);
+        }
+    }
+
+    inputContainer.value = val;
+});
