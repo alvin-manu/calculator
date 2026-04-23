@@ -20,16 +20,28 @@ changeThemeBtn.addEventListener("click", () => {
 })
 
 const addInput = (val) => {
+    const currentInput = inputContainer.value;
+    const lastChar = currentInput[currentInput.length - 1];
+    const operators = ['+', '-', '*', '/'];
+
     if (val === '.') {
-        const parts = inputContainer.value.split(/[\+\-\*\/]/);
-
+        const parts = currentInput.split(/[\+\-\*\/]/);
         const currentNumber = parts[parts.length - 1];
-
         if (currentNumber.includes('.')) return;
     }
 
-    inputContainer.value += val
-}
+    if (operators.includes(val)) {
+
+        if (currentInput === "" && val !== '-') return;
+
+        if (operators.includes(lastChar)) {
+            inputContainer.value = currentInput.slice(0, -1) + val;
+            return; 
+        }
+    }
+
+    inputContainer.value += val;
+};
 
 const clearAll = () => {
     inputContainer.value = "";
