@@ -13,31 +13,35 @@
     <main>
         <div class="calculator">
             <div class="displayField">
-                <p>calculations</p>
-                <input type="text" autofocus>
+                <p id="calculations"></p>
+                <input type="text" id="inputContainer" autofocus>
             </div>
             <div class="themeContainer">
                 <button class="themeBtn" id="changeThemeBtn"><i id="themeIcon" class="fa-solid fa-moon"></i> <span id="themeText">Dark Mode</span></button>
             </div>
             <div class="calculateButtons">
-                <button>Ac</button>
-                <button><i class="fa-solid fa-delete-left"></i></button>
-                <button class="sign">/</button>
-                <button class="sign">*</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button class="sign">-</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button class="sign">+</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button class="tallBth sign">=</button>
-                <button class="wideBth">0</button>
-                <button>.</button>
+                <button onclick="clearAll()">Ac</button>
+                <button onclick="deleteLast()"><i class="fa-solid fa-delete-left"></i></button>
+                <button class="sign" onclick="addInput('/')">/</button>
+                <button class="sign" onclick="addInput('*')">*</button>
+
+                <button onclick="addInput(7)">7</button>
+                <button onclick="addInput(8)">8</button>
+                <button onclick="addInput(9)">9</button>
+                <button class="sign" onclick="addInput('-')">-</button>
+
+                <button onclick="addInput(4)">4</button>
+                <button onclick="addInput(5)">5</button>
+                <button onclick="addInput(6)">6</button>
+                <button class="sign" onclick="addInput('+')">+</button>
+
+                <button onclick="addInput(1)">1</button>
+                <button onclick="addInput(2)">2</button>
+                <button onclick="addInput(3)">3</button>
+                <button class="tallBth sign" onclick="calculate()">=</button>
+
+                <button class="wideBth" onclick="addInput(0)">0</button>
+                <button onclick="addInput('.')">.</button>
             </div>
         </div>
     </main>
