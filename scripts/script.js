@@ -4,8 +4,10 @@ const themeIcon = document.getElementById("themeIcon");
 const inputContainer = document.getElementById("inputContainer")
 const calculations = document.getElementById("calculations")
 
-changeThemeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("darkMode")
+changeThemeBtn.addEventListener("click", () => changeTheme())
+
+const changeTheme = ()=>{
+     document.body.classList.toggle("darkMode")
     if (document.body.classList.contains("darkMode")) {
         themeText.textContent = "Light mode"
 
@@ -17,7 +19,7 @@ changeThemeBtn.addEventListener("click", () => {
         themeIcon.classList.remove("fa-sun");
         themeIcon.classList.add("fa-moon");
     }
-})
+}
 
 const addInput = (val) => {
     const currentInput = inputContainer.textContent;
@@ -61,3 +63,31 @@ const calculate = () => {
     }
 };
 
+window.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    switch (key) {
+        case 'Enter':
+            e.preventDefault();
+            calculate(); 
+            break;
+
+        case 'Backspace':
+            deleteLast(); 
+            break;
+
+        case 'Escape':
+            clearAll(); 
+            break;
+
+        case 'Shift':
+            changeTheme(); 
+            break;
+
+        default:
+            if (/[0-9+\-*/.]/.test(key)) {
+                addInput(key); 
+            }
+            break;
+    }
+});
