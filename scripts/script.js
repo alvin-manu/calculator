@@ -63,6 +63,21 @@ const calculate = () => {
     }
 };
 
+const power = () => {
+    console.log("first")
+    const currentInput = inputContainer.textContent;
+    const lastChar = currentInput[currentInput.length - 1];
+    const operators = ['+', '-', '*', '/'];
+
+    if(currentInput === "" || operators.includes(lastChar) || lastChar === "."){
+        return
+    }else{
+
+        inputContainer.textContent += "**";
+    }
+
+};
+
 window.addEventListener('keydown', (e) => {
     const key = e.key;
 
@@ -82,6 +97,10 @@ window.addEventListener('keydown', (e) => {
 
         case 'Shift':
             changeTheme(); 
+            break;
+
+        case 's':
+            power(); 
             break;
 
         default:
