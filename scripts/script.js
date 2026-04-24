@@ -20,7 +20,7 @@ changeThemeBtn.addEventListener("click", () => {
 })
 
 const addInput = (val) => {
-    const currentInput = inputContainer.value;
+    const currentInput = inputContainer.textContent;
     const lastChar = currentInput[currentInput.length - 1];
     const operators = ['+', '-', '*', '/'];
 
@@ -35,51 +35,29 @@ const addInput = (val) => {
         if (currentInput === "" && val !== '-') return;
 
         if (operators.includes(lastChar)) {
-            inputContainer.value = currentInput.slice(0, -1) + val;
+            inputContainer.textContent = currentInput.slice(0, -1) + val;
             return; 
         }
     }
 
-    inputContainer.value += val;
+    inputContainer.textContent += val;
 };
 
 const clearAll = () => {
-    inputContainer.value = "";
+    inputContainer.textContent = "";
     calculations.textContent = "";
 };
 
 const deleteLast = () => {
-    inputContainer.value = inputContainer.value.slice(0, -1);
+    inputContainer.textContent = inputContainer.textContent.slice(0, -1);
 };
 
 const calculate = () => {
     try {
-        calculations.textContent = inputContainer.value;
-        inputContainer.value = eval(inputContainer.value);
+        calculations.textContent = inputContainer.textContent;
+        inputContainer.textContent = eval(inputContainer.textContent);
     } catch (err) {
-        inputContainer.value = "NaN";
+        inputContainer.textContent = "NaN";
     }
 };
 
-inputContainer.addEventListener("input", (e) => {
-
-    let val = inputContainer.value.replace(/[^0-9+\-*/.]/g, "");
-
-    val = val.replace(/[\+\-\*\/]{2,}/g, (match) => match[match.length - 1]);
-
-    if (/^[\+\*\/]/.test(val)) {
-        val = "";
-    }
-
-    if (e.data === '.') {
-
-        const parts = val.split(/[\+\-\*\/]/);
-        const currentNumber = parts[parts.length - 1];
-
-        if (currentNumber.split('.').length > 2) {
-            val = val.slice(0, -1);
-        }
-    }
-
-    inputContainer.value = val;
-});
