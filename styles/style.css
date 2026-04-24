@@ -1,21 +1,21 @@
 :root {
   --bg-color: #daf0ff;
   --primary-color: rgba(255, 255, 255, 0.842);
-  --text-primary-color:rgb(0, 0, 0);
-  --text-color: rgb(16, 16, 16);
-  --button-color: #d2ebfc;
+  --text-primary-color: rgb(0, 0, 0);
+  --text-color: rgb(255, 255, 255);
+  --button-color: #cce6f6;
   --button-hover-color: #bee5ff;
   --math-bg-keys: #b3dbff;
   --math-color-keys: #60abe0;
-  --math-bg-hover-keys: #18acff;
+  --math-bg-hover-keys: #18acfe; 
   --math-color-hover-keys: #ffffff;
-  --border-color:white;
+  --border-color: white;
 }
 
 body.darkMode {
   --bg-color: #444546;
   --primary-color: rgba(0, 0, 0, 0.884);
-  --text-primary-color:white;
+  --text-primary-color: white;
   --text-color: #2ba8fb;
   --button-color: #2f3135;
   --button-hover-color: #3f4041;
@@ -23,7 +23,7 @@ body.darkMode {
   --math-color-keys: #379dfc;
   --math-bg-hover-keys: #1892ff;
   --math-color-hover-keys: #ffffff;
-  --border-color:#2f3135;
+  --border-color: #2f3135;
 }
 
 body {
@@ -37,14 +37,29 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary-color);
 }
+main {
+  background-color: #0f8ee2;
+  border-radius: 50%;
+  width: 600px;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .calculator {
   background-color: var(--primary-color);
   padding: 10px 20px;
-  border-radius: 15px;
   max-width: 300px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.8px);
+  -webkit-backdrop-filter: blur(8.8px);
+}
 
+body.darkMode .calculator {
+  background-color: black;
 }
 
 .displayField {
@@ -59,7 +74,7 @@ body {
   width: 100%;
   background-color: transparent;
   color: var(--text-primary-color);
-  border: none;
+  border: 1px solid black;
   font-size: 36px;
   font-weight: 500;
   outline: none;
@@ -72,10 +87,11 @@ body {
   gap: 15px;
 }
 .calculateButtons button {
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
-  font-size: 20px;
-  border: 1px solid  var(--border-color);
+  font-size: 26px;
+  font-weight: bold;
+  border: 1px solid var(--border-color);
   background-color: var(--button-color);
   color: var(--text-color);
 }
@@ -101,7 +117,7 @@ body {
   border-radius: 10px;
 }
 
-.calculateButtons button:hover{
+.calculateButtons button:hover {
   background-color: var(--button-hover-color);
 }
 
