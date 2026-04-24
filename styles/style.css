@@ -55,7 +55,7 @@ body {
   margin: 25px 0px;
   min-height: 20vh;
 }
-.displayField input {
+.displayField .displayBox {
   width: 100%;
   background-color: transparent;
   color: var(--text-primary-color);
