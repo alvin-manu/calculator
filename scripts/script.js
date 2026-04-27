@@ -6,8 +6,8 @@ const calculations = document.getElementById("calculations")
 
 changeThemeBtn.addEventListener("click", () => changeTheme())
 
-const changeTheme = ()=>{
-     document.body.classList.toggle("darkMode")
+const changeTheme = () => {
+    document.body.classList.toggle("darkMode")
     if (document.body.classList.contains("darkMode")) {
         themeText.textContent = "Light mode"
 
@@ -38,7 +38,7 @@ const addInput = (val) => {
 
         if (operators.includes(lastChar)) {
             inputContainer.textContent = currentInput.slice(0, -1) + val;
-            return; 
+            return;
         }
     }
 
@@ -56,8 +56,14 @@ const deleteLast = () => {
 
 const calculate = () => {
     try {
-        calculations.textContent = inputContainer.textContent;
-        inputContainer.textContent = eval(inputContainer.textContent);
+        let rawValue = inputContainer.textContent;
+        let cleanValue = rawValue.replace(/[=,]/g, '');
+        let result = eval(cleanValue).toFixed(2);
+
+        const formattedInput = cleanValue.replace(/([\+\-\*\/])/g, '<span class="operator">$1</span>');
+        calculations.innerHTML = formattedInput;
+        
+        inputContainer.textContent = "=" + result.toLocaleString('en-US');
     } catch (err) {
         inputContainer.textContent = "NaN";
     }
@@ -69,9 +75,9 @@ const power = () => {
     const lastChar = currentInput[currentInput.length - 1];
     const operators = ['+', '-', '*', '/'];
 
-    if(currentInput === "" || operators.includes(lastChar) || lastChar === "."){
+    if (currentInput === "" || operators.includes(lastChar) || lastChar === ".") {
         return
-    }else{
+    } else {
 
         inputContainer.textContent += "**";
     }
@@ -84,28 +90,28 @@ window.addEventListener('keydown', (e) => {
     switch (key) {
         case 'Enter':
             e.preventDefault();
-            calculate(); 
+            calculate();
             break;
 
         case 'Backspace':
-            deleteLast(); 
+            deleteLast();
             break;
 
         case 'Escape':
-            clearAll(); 
+            clearAll();
             break;
 
         case 'Shift':
-            changeTheme(); 
+            changeTheme();
             break;
 
         case 's':
-            power(); 
+            power();
             break;
 
         default:
             if (/[0-9+\-*/.]/.test(key)) {
-                addInput(key); 
+                addInput(key);
             }
             break;
     }

@@ -3,20 +3,24 @@
   --primary-color: rgba(255, 255, 255, 0.842);
   --text-primary-color: rgb(0, 0, 0);
   --text-color: rgb(255, 255, 255);
-  --button-color: #cce6f6;
+  --secondary-text-color:#797f7f;
+  --button-color: #c1d9e8;
   --button-hover-color: #9ec6e0;
   --math-bg-keys: #b3dbff;
   --math-color-keys: #60abe0;
-  --math-bg-hover-keys: #18acfe; 
+  --math-bg-hover-keys: #18acfe;
   --math-color-hover-keys: #ffffff;
   --border-color: white;
+  --clear-btn-color :#86c5fb;
+  --clear-btn-bg-color :#c1d9e8;
 }
 
 body.darkMode {
   --bg-color: #444546;
-  --primary-color: rgba(0, 0, 0, 0.884);
+  --primary-color: #17191a;
   --text-primary-color: white;
   --text-color: #2ba8fb;
+  --secondary-text-color:#7f8182;
   --button-color: #2f3135;
   --button-hover-color: #3f4041;
   --math-bg-keys: #005db1;
@@ -24,6 +28,10 @@ body.darkMode {
   --math-bg-hover-keys: #1892ff;
   --math-color-hover-keys: #ffffff;
   --border-color: #2f3135;
+  --clear-btn-color :#a4a6a7;
+  --clear-btn-bg-color :#5f5f5f;
+
+
 }
 
 body {
@@ -50,7 +58,7 @@ main {
 .calculator {
   background-color: var(--primary-color);
   padding: 10px 20px;
-  max-width: 300px;
+  max-width: 265px;
   background: rgba(255, 255, 255, 0.65);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -76,27 +84,31 @@ body.darkMode .calculator {
   background-color: transparent;
   color: var(--text-primary-color);
   border: none;
-  font-size: 36px;
+  font-size: 40px;
+  font-family: sans-serif;
   font-weight: 500;
   text-align: center;
   outline: none;
   text-align: right;
   overflow-x: auto;
   scrollbar-width: none;
+  white-space: nowrap;
 }
 
 .displayBox::after {
-  content: "|"; 
+  content: "|";
   align-self: center;
   margin-left: 2px;
   margin-bottom: 50px;
   color: var(--text-primary-color);
-  font-weight: 100;
+  font-family: serif;
+  font-weight: lighter;
   animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-  from, to {
+  from,
+  to {
     opacity: 1;
   }
   50% {
@@ -153,4 +165,25 @@ body.darkMode .calculator {
   main {
     background-color: var(--bg-color);
   }
+}
+.operator {
+  color: #128ce0;
+}
+#calculations {
+  color: var(--secondary-text-color);
+  text-align: right;
+  width: 100%;
+  font-size: 22px;
+  font-family: sans-serif;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.calculateButtons .clearBtn{
+  color: var(--clear-btn-color);
+  background-color: var(--clear-btn-bg-color);
+}
+.calculateButtons .clearBtn:hover{
+  color: white;
 }
