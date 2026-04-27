@@ -58,12 +58,14 @@ const calculate = () => {
     try {
         let rawValue = inputContainer.textContent;
         let cleanValue = rawValue.replace(/[=,]/g, '');
-        let result = eval(cleanValue).toFixed(2);
+        let result = eval(cleanValue);
 
         const formattedInput = cleanValue.replace(/([\+\-\*\/])/g, '<span class="operator">$1</span>');
         calculations.innerHTML = formattedInput;
-        
-        inputContainer.textContent = "=" + result.toLocaleString('en-US');
+
+        inputContainer.textContent = "=" + result.toLocaleString('en-US', {
+            maximumFractionDigits: 2
+        });
     } catch (err) {
         inputContainer.textContent = "NaN";
     }
