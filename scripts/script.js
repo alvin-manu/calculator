@@ -4,8 +4,10 @@ const themeIcon = document.getElementById("themeIcon");
 const inputContainer = document.getElementById("inputContainer")
 const calculations = document.getElementById("calculations")
 
-changeThemeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("darkMode")
+changeThemeBtn.addEventListener("click", () => changeTheme())
+
+const changeTheme = ()=>{
+     document.body.classList.toggle("darkMode")
     if (document.body.classList.contains("darkMode")) {
         themeText.textContent = "Light mode"
 
@@ -17,10 +19,10 @@ changeThemeBtn.addEventListener("click", () => {
         themeIcon.classList.remove("fa-sun");
         themeIcon.classList.add("fa-moon");
     }
-})
+}
 
 const addInput = (val) => {
-    const currentInput = inputContainer.value;
+    const currentInput = inputContainer.textContent;
     const lastChar = currentInput[currentInput.length - 1];
     const operators = ['+', '-', '*', '/'];
 
@@ -35,51 +37,76 @@ const addInput = (val) => {
         if (currentInput === "" && val !== '-') return;
 
         if (operators.includes(lastChar)) {
-            inputContainer.value = currentInput.slice(0, -1) + val;
+            inputContainer.textContent = currentInput.slice(0, -1) + val;
             return; 
         }
     }
 
-    inputContainer.value += val;
+    inputContainer.textContent += val;
 };
 
 const clearAll = () => {
-    inputContainer.value = "";
+    inputContainer.textContent = "";
     calculations.textContent = "";
 };
 
 const deleteLast = () => {
-    inputContainer.value = inputContainer.value.slice(0, -1);
+    inputContainer.textContent = inputContainer.textContent.slice(0, -1);
 };
 
 const calculate = () => {
     try {
-        calculations.textContent = inputContainer.value;
-        inputContainer.value = eval(inputContainer.value);
+        calculations.textContent = inputContainer.textContent;
+        inputContainer.textContent = eval(inputContainer.textContent);
     } catch (err) {
-        inputContainer.value = "NaN";
+        inputContainer.textContent = "NaN";
     }
 };
 
-inputContainer.addEventListener("input", (e) => {
+const power = () => {
+    console.log("first")
+    const currentInput = inputContainer.textContent;
+    const lastChar = currentInput[currentInput.length - 1];
+    const operators = ['+', '-', '*', '/'];
 
-    let val = inputContainer.value.replace(/[^0-9+\-*/.]/g, "");
+    if(currentInput === "" || operators.includes(lastChar) || lastChar === "."){
+        return
+    }else{
 
-    val = val.replace(/[\+\-\*\/]{2,}/g, (match) => match[match.length - 1]);
-
-    if (/^[\+\*\/]/.test(val)) {
-        val = "";
+        inputContainer.textContent += "**";
     }
 
-    if (e.data === '.') {
+};
 
-        const parts = val.split(/[\+\-\*\/]/);
-        const currentNumber = parts[parts.length - 1];
+window.addEventListener('keydown', (e) => {
+    const key = e.key;
 
-        if (currentNumber.split('.').length > 2) {
-            val = val.slice(0, -1);
-        }
+    switch (key) {
+        case 'Enter':
+            e.preventDefault();
+            calculate(); 
+            break;
+
+        case 'Backspace':
+            deleteLast(); 
+            break;
+
+        case 'Escape':
+            clearAll(); 
+            break;
+
+        case 'Shift':
+            changeTheme(); 
+            break;
+
+        case 's':
+            power(); 
+            break;
+
+        default:
+            if (/[0-9+\-*/.]/.test(key)) {
+                addInput(key); 
+            }
+            break;
     }
-
-    inputContainer.value = val;
 });
